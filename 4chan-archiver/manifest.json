@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "4chan Thread Archiver",
+  "version": "1.0.0",
+  "description": "Archive 4chan threads and download all media with one click.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.4chan.org/*",
+    "https://*.4cdn.org/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://boards.4chan.org/*/thread/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
