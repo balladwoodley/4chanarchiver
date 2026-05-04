@@ -1,6 +1,14 @@
-# 4chan Thread Archiver — Chrome Extension
+# Imageboard Thread Archiver — Chrome Extension
 
-A dark, minimal Chrome extension to archive 4chan threads and download all media.
+A dark, minimal Chrome extension to archive threads and download all media from multiple imageboards.
+
+## Supported Sites
+
+- **4chan** (boards.4chan.org)
+- **2ch.hk** (Russian imageboard, Двач)
+- **420chan** (420chan.org)
+- **Lainchan** (lainchan.org)
+- **Wizchan** (wizchan.org)
 
 ## Features
 
@@ -10,6 +18,7 @@ A dark, minimal Chrome extension to archive 4chan threads and download all media
 - **Videos / WebMs Only** — download only video files (webm, mp4)
 - Live post/image/video counter
 - Activity log in the popup
+- Board-specific accent colours in the popup and HTML archive
 - Small floating `◈` button injected on thread pages
 
 ## Install (Developer Mode)
@@ -18,21 +27,25 @@ A dark, minimal Chrome extension to archive 4chan threads and download all media
 2. Open Chrome and go to: `chrome://extensions/`
 3. Enable **Developer mode** (top-right toggle).
 4. Click **Load unpacked**.
-5. Select the `4chan-archiver` folder.
+5. Select the `imageboard-archiver` folder.
 6. The extension icon will appear in your toolbar.
 
 ## Usage
 
-1. Navigate to any 4chan thread, e.g. `https://boards.4chan.org/g/thread/12345`
-2. Click the **4ARCH** extension icon in your toolbar.
+1. Navigate to any supported thread.
+2. Click the extension icon in your toolbar.
 3. The popup will scan the page and show post/image/video counts.
 4. Click the action you want:
-   - **Archive Thread (HTML)** → downloads a `4chan_BOARD_THREADID_TIMESTAMP.html` file
-   - **Download All Media / Images Only / Videos Only** → downloads files into a folder named `4chan_BOARD_THREADID/`
+   - **Archive Thread (HTML)** → downloads a `SITE_BOARD_THREADID_TIMESTAMP.html` file
+   - **Download All Media / Images Only / Videos Only** → downloads files into a folder named `SITE_BOARD_THREADID/`
 
 ## Notes
 
-- Downloads go to your browser's default downloads folder (or ask-where-to-save if you have that setting enabled).
-- Media files are downloaded sequentially with a small delay to be respectful to 4cdn.org servers.
-- The HTML archive includes inline image previews (loaded from 4cdn.org) and full post text.
+- Downloads go to your browser's default downloads folder.
+- Media files are downloaded sequentially with a small delay to be respectful to servers.
+- The HTML archive includes inline image previews and full post text.
 - No data is sent anywhere — everything runs locally in your browser.
+
+## Adding More Boards
+
+To add support for a new board, add an entry to the `BOARDS` array in `popup.js` and a corresponding scraper function. Then add the site's URL pattern to `manifest.json` under both `host_permissions` and `content_scripts.matches`.
