@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Imageboard Thread Archiver",
+  "version": "2.0.0",
+  "description": "Archive threads and download all media from multiple imageboards.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.4chan.org/*",
+    "https://*.4cdn.org/*",
+    "https://2ch.hk/*",
+    "https://*.2ch.hk/*",
+    "https://420chan.org/*",
+    "https://*.420chan.org/*",
+    "https://lainchan.org/*",
+    "https://*.lainchan.org/*",
+    "https://wizchan.org/*",
+    "https://*.wizchan.org/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://boards.4chan.org/*/thread/*",
+        "https://2ch.hk/*/res/*.html",
+        "https://420chan.org/*/res/*",
+        "https://lainchan.org/*/res/*.html",
+        "https://wizchan.org/*/res/*.html"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
